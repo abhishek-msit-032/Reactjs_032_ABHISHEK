@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="shortcut icon" href="">
+</head>
+<body>
+    <div id="quiz">
+        <div id="question-title"></div>
+        <div id="choices"></div>
+        <button id="next-question" type="button" class="btn btn-info">Next</button>
+        
+    </div>
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+<script src="Quiz.js"></script>
+
+
+<script id="choices-template" type="text/x-handlebars-template">
+        {{#each choices}}
+        <div class="choice">
+            <input type="radio" name="choices" id="choice{{@index}}" value="{{@index}}">
+            <label for="choice{{@index}}">{{ @this }}</label>
+        </div>
+        {{/each}}
+</script>
+<script  id="title-template" type="text/x-handlebars-template">
+    {{ title }}
+</script>
+
+<script  id="finalScore-template" type="text/x-handlebars-template">
+    <h2 id="finalScore">You've scored {{ totalScore }} out of {{ questionsLength }}!</h2>
+</script>
+<div class="footer">
+<hr>
+  <h2><p>@Abhishek Bejavada</p></h2>
+</div>
+</body>
+</html>
