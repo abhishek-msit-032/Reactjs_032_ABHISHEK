@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Hello</title>
+    <style>
+    body{
+      margin-top:100px;
+      text-align: center;
+     
+    }
+    p{
+      font-size:20px;
+    }
+    input{
+      width:250px;
+      height:30px;
+    }
+
+    form{
+      border:5px solid black;
+      margin-left:350px;
+      margin-right:350px;
+    }
+    button{
+      width:40px;
+      height:40px;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="app" />
+    <script type="text/babel">
+
+      class App extends React.Component {
+
+        render() {
+          return (
+             <form>
+              <h1>Calculator</h1>
+              <p>Number1</p>
+              <input type="number" placeholder="Num1"/>
+              <p>Number2</p>
+              <input type="number" placeholder="Num2"/>
+              <br></br>
+              <br></br>
+              <button onClick={() => alert("calculating the Addition")}>+</button>
+              <button onClick={() => alert("calculating the Subtraction")}>-</button>
+              <button onClick={() => alert("calculating the Multiplication")}>*</button>
+              <button onClick={() => alert("calculating the Division")}>/</button>
+              <br></br>
+              <p></p>
+              <input type="number" placeholder="Result:"/>
+              <p></p>
+             </form>
+          );
+        }
+      }
+
+      ReactDOM.render(<App />, document.querySelector("#app"));
+
+    </script>
+  </body>
+</html>
