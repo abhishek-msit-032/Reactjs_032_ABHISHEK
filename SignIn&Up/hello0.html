@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Hello</title>
+    <style>
+
+    .two{
+      margin: 90px auto;
+        padding: 80px;
+        width: 450px;
+        height: 300px;
+        float: center;
+        border:5px solid black;
+    }
+    h1{
+      text-align:center;
+      margin-top:-30px;
+    }
+    li{
+     border:1px solid black;
+     height:25px;
+    }
+    #btn{
+    
+    }
+    </style>
+  </head>
+  <body>
+    <div id="app" />
+    <script type="text/babel">
+
+      class App extends React.Component {
+         constructor(props){
+           super(props);
+           this.state={
+             tasks:[],
+             input:"",
+             time: {}, seconds: 6
+             
+           };
+           this.timer = 0;
+           this.startTimer = this.startTimer.bind(this);
+           this.countDown = this.countDown.bind(this);
+           
+         }
+        render() {
+          return (
+            <div className="two">
+                 <h1>Tasks</h1>
+                 <div>
+                    <input onChange={this.handleChange} value={this.state.input} />
+                    <button onClick={this.addTask}>add task</button>
+                 </div>
+                 <ul>
+                    {this.state.tasks.map((task,i)=>
+                    <li key={i}>
+                    {task}
+                    <button id="btn" onClick={this.deleteTask}>delete task</button>
+                    <button onClick={this.startTimer}>Start</button>
+                    m: {this.state.time.m} s: {this.state.time.s}
+                    
+                    </li>
+                    )}
+                  </ul>
+            </div>
+          );
+        }
+        
+secondsToTime(secs){
+    let hours = Math.floor(secs / (60 * 60));
+
+    let divisor_for_minutes = secs % (60 * 60);
+    let minutes = Math.floor(divisor_for_minutes / 60);
+
+    let divisor_for_seconds = divisor_for_minutes % 60;
+    let seconds = Math.ceil(divisor_for_seconds);
+
+    let obj = {
+      "h": hours,
+      "m": minutes,
+      "s": seconds
+    };
+    return obj;
+  }
+
+  componentDidMount() {
+    let timeLeftVar = this.secondsToTime(this.state.seconds);
+    this.setState({ time: timeLeftVar });
+  }
+
+  startTimer() {
+    if (this.timer == 0 && this.state.seconds > 0) {
+      this.timer = setInterval(this.countDown, 1000);
+    }
+   else if(this.state.seconds == 0){
+     this.timer=setInterval(this.sec);
+   }
+  }
+
+  countDown() {
+    // Remove one second, set state so a re-render happens.
+ 
+    let seconds = this.state.seconds - 1;
+    this.setState({
+      time: this.secondsToTime(seconds),
+      seconds: seconds,
+    });
+    
+    // Check if we're at zero.
+    if (seconds === 0) { 
+      clearInterval(this.timer);
+      return this.delete();
+    }
+    
+
+  }
+  delete=(event,i)=>{
+        
+        var ditem=[...this.state.tasks]
+        ditem.splice(i,1)
+        this.setState(state=>({
+          tasks:[]
+          
+        }));
+       
+    
+      }
+    
+
+        deleteTask=(event,i)=>{
+        
+        var ditem=[...this.state.tasks]
+        
+        ditem.splice(i,1)
+        
+        this.setState(state=>({
+        
+          tasks:ditem,
+          
+          
+        }));
+        
+      }
+        handleChange=(event)=>{
+          this.setState({
+            input:event.target.value
+          });
+        }
+        addTask=()=>{
+          this.setState(state=>({
+            tasks:[...this.state.tasks,state.input],
+            input:""
+
+          }))
+        }
+      }
+      ReactDOM.render(<App />, document.querySelector("#app"));
+
+    </script>
+  </body>
+</html>

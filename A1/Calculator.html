@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Calculator</title>
+    
+    <style>
+    body{
+      margin-top:100px;
+      text-align: center;
+      border:5px solid black;
+      margin-left:350px;
+      margin-right:350px;
+    }
+    p{
+      font-size:20px;
+    }
+    input{
+      width:250px;
+      height:30px;
+    }
+
+
+    button{
+      width:40px;
+      height:40px;
+    }
+    </style>
+    
+  </head>
+  <body>
+    <div id="app" />
+
+
+    <script type="text/babel">
+
+      class App extends React.Component {
+    state = {
+    input1: "",
+    input2: "",
+    res:""
+  };
+
+        render() {
+          return (
+            <div>
+              <h1>Simple Calculator</h1>
+              <p>Input 1:</p>
+              <input onKeyPress={this.inputKeyPress} onChange={this.updateInputValue} value={this.state.input1} type="number" placeholder="first value" 
+               />
+              <p>Input 2:</p>
+              <input onKeyPress={this.inputKeyPress} onChange={this.updateInputValue2} value={this.state.input2} type="number" placeholder="second value"
+                />
+              <br></br>
+              <br></br>
+              <button onClick={this.add}>+</button>
+              <button onClick={this.subtract}>-</button>
+              <button onClick={this.mul}>*</button>
+              <button onClick={this.div}>/</button>
+              
+              
+              <br></br>
+              <br></br>
+              <p>Your Output is :{this.state.res}</p>
+              
+              <p></p>
+            </div>
+          );
+        }
+
+ 
+
+  updateInputValue = (e) => {
+    
+    this.setState({
+      input1: parseInt(e.target.value)
+    });
+  };
+
+ updateInputValue2 = (e) => {
+    
+    this.setState({
+      input2: parseInt(e.target.value)
+    });
+  };
+
+  add = () => {
+  
+    let a=this.state.input1
+    let b=this.state.input2
+    let c = a+b
+    this.setState({
+      res:c
+    });
+    return(
+     <p>Your Output is :{this.state.res}</p>
+    )
+  };
+
+    subtract = () => {
+  
+    let a=this.state.input1
+    let b=this.state.input2
+    let c = a-b
+    this.setState({
+      res:c
+    });
+   
+  };
+
+
+  mul = () => {
+  
+    let a=this.state.input1
+    let b=this.state.input2
+    let c = a*b
+    this.setState({
+      res:c
+    });
+   
+  };
+
+  div = () => {
+  
+    let a=this.state.input1
+    let b=this.state.input2
+    let c = a/b
+    this.setState({
+      res:c
+    });
+   
+  };
+
+    reset= (event) => {
+                    this.setState({
+                        input1: "",
+                        input2: "",
+                        res:""
+        
+                    });
+                }
+
+
+      }
+
+      ReactDOM.render(<App />, document.querySelector("#app"));
+
+    </script>
+  </body>
+</html>

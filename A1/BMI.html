@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>BMI</title>
+    <style>
+    #app{
+        margin-top:10%;
+        text-align:center;
+        border: 5px solid black ;
+        margin-left: 400px;
+        margin-right: 400px;  
+    }
+    
+    button{
+      padding: 6px;
+      margin :4px;
+     
+    }
+    </style>
+  </head>
+  <body>
+    <div id="app" />
+
+
+    <script type="text/babel">
+
+      class App extends React.Component {
+        constructor(props) {
+                    super(props);
+                    this.state = {
+                        weight: "",
+                        Feet: "",
+                        Inches:"",
+                        Bmi: ""
+                    };
+                }
+
+        render() {
+          return (
+            
+            <div id="mybmi">
+              <h1>BMI</h1>
+              <p>Weight:</p>
+              <input onKeyPress={this.inputKeyPress} onChange={this.updateResponse1} value={this.state.weight} type="number" placeholder="Weight"/>
+              <p>Height:</p>
+              <input onKeyPress={this.inputKeyPress} onChange={this.updateResponse2} value={this.state.Feet} type="number" placeholder="Feet"/>
+              <br></br>
+              <br></br>
+              <input onKeyPress={this.inputKeyPress} onChange={this.updateResponse3} value={this.state.Inches} type="number" placeholder="Inches"/>
+              <br></br>
+              
+              <br></br>
+              <br></br>
+              <button onClick={this.calc}>Calculate</button>
+              
+              <br></br>
+              <p>Your BMI is :{this.state.Bmi}</p>
+              
+            </div>
+            
+          );
+        }
+
+         updateResponse1 = (event) => {
+                    this.setState({ weight: event.target.value });
+                }
+        
+        updateResponse2 = (event) => {
+                    this.setState({ Feet: event.target.value });
+                }
+        
+        updateResponse3 = (event) => {
+                    this.setState({ Inches: event.target.value });
+                }
+
+        calc=()=>{
+            let a = this.state.weight
+            let b = this.state.Feet * 0.3048
+            let c = this.state.Inches*0.0254
+            let d = b+c
+            let res = a/(d*d)
+            
+            this.setState({
+              Bmi:res
+
+            });
+            
+        }
+      }
+
+      ReactDOM.render(<App />, document.querySelector("#app"));
+
+    </script>
+  </body>
+</html>

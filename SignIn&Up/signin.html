@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <title>SignIn</title>
+        <style>
+            #app {
+                text-align: center;
+                font-family: sans-serif;
+            }
+
+            #problem {
+                font-size: 72px;
+            }
+
+            #winner {
+                font-size: 72px;
+                color: black;
+            }
+                body{
+      margin-top:100px;
+      text-align: center;
+     
+    }
+    p{
+      font-size:20px;
+    }
+    input{
+      width:250px;
+      height:30px;
+    }
+    button{
+      width:180px;
+      height:30px;
+    }
+    form{
+      border:5px solid black;
+      margin-left:350px;
+      margin-right:350px;
+    }
+            
+        </style>
+    </head>
+    <body>
+        <div id="app" />
+        <script type="text/babel">
+            class Winner extends React.Component {
+                render() {
+                    return (
+                        <div id="winner">
+                            Welcome {this.props.name}!
+                        </div>
+                    );
+                }
+            }
+
+            class App extends React.Component {
+
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                        uname:"",
+                        password:"",
+                        ans: ""
+                    };
+                }
+
+                render() {
+                    if (this.state.uname !="" && this.state.password!="" && this.state.ans!= "" ) {
+                        return this.rendername();
+                    } else {
+                        return this.renderinput();
+                    }
+                }
+
+                renderinput() {
+                    return (
+                <form>
+                  <h1>SignIn</h1>
+                  <p>Username:</p>
+                  <input onKeyPress={this.inputKeyPress} onChange={this.updateResponse1} value={this.state.uname} type="text" name="username" placeholder="User Name" />
+                  <br></br>
+                  <p>Password:</p>
+                  <input onKeyPress={this.inputKeyPress} onChange={this.updateResponse2} value={this.state.password} type="password" name="password" placeholder="Password" />
+                  <br></br>
+                  <br></br>
+                  <button onClick={this.resetGame} onChange={this.updateResponse3} value={this.state.ans}>Submit</button>
+                  <br></br>
+                  
+                  <hr></hr>
+              <p>New to this Page</p>
+              <a href="signup.html" class="btn btn-primary" role="button">Sign Up</a>
+              <p></p>
+                </form>
+                    );
+                }
+
+                rendername() {
+                    const name = this.state.uname;
+                    return (
+                        <Winner name={name} />
+                    );
+                }
+
+                updateResponse1 = (event) => {
+                    this.setState({ uname: event.target.value });
+                   
+                }
+        
+                updateResponse2 = (event) => {
+                    this.setState({ password: event.target.value });
+                }
+
+                updateResponse3 = (event) => {
+                    this.setState({ ans: event.target.value });
+                }
+
+           
+
+                resetGame = (event) => {
+                    this.setState({
+                        
+                        ans: this.state.uname
+                        
+                    });
+                }
+            }
+
+            ReactDOM.render((
+                <div>
+                    <App />
+                </div>
+            ), document.querySelector("#app"));
+        </script>
+    </body>
+</html>
