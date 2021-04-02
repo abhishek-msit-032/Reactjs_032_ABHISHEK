@@ -1,0 +1,133 @@
+.App {
+  text-align: center;
+  background-color: rgb(209, 216, 218);
+}
+
+
+.list1{
+  margin-left: 29%;
+  text-align: left;
+  padding: 5px;
+  
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: rgb(78, 56, 56);
+  height: 320px;
+  padding: 20px;
+  color: white;
+  margin-left: 150px;
+  margin-right: 150px;
+  border: 5px solid black;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.Game {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+.b1{
+  background-color: #dbbc56;
+    border: 1px solid #dbbc56;
+    border-radius: 3px;
+    float: right;
+    margin-left: 90%;
+    color: #FFF;
+    font-size: 12pt;
+    padding: 7px 28px;
+    text-decoration: none;
+    margin: 5px;
+    transition: all 0.5s;
+    max-width: 160px;
+    min-width: 160px;
+}
+button {
+    background-color: #5689db;
+    border: 1px solid #5689db;
+    border-radius: 3px;
+    display: inline-block;
+    color: #FFF;
+    font-size: 12pt;
+    padding: 7px 28px;
+    text-decoration: none;
+    margin: 5px;
+    transition: all 0.5s;
+    max-width: 160px;
+    min-width: 160px;
+}
+
+button:hover {
+    background-color: lightblue;
+    font-size: 14pt;
+}
+
+.Board {
+  display: flex;
+  
+}
+
+.Slat {
+
+}
+
+.Hole {
+  padding: 5px;
+  margin: 1px;
+  min-width: 30px;
+  min-height: 30px;
+  border: 1px solid rgb(10, 10, 10);
+
+  
+  border-radius: 50%
+}
+
+.Hole div {
+  position: relative;
+  min-width: 30px;
+  min-height: 30px;
+  border-radius: 4px;
+  top: -400px;
+  transition: transform 0.5s;
+}
+
+.Red {
+  background-color: #FF456C;
+  transform: translateY(400px);
+}
+
+.Blue {
+  background-color: #2CC5FF;
+  transform: translateY(400px);
+}
+
+.winnerMessage {
+  margin: 20px;
+  font-size: 0pt;
+  font: 12pt;
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.18, 0.99, 0.8, 1.17);
+}
+
+.appear {
+  opacity: 1;
+  font-size: 20pt;
+}
+.name{
+  border: 5px solid black;
+  width: 150%;
+  float: inline-end;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
